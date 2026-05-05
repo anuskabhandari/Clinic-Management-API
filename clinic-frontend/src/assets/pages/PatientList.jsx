@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import {getPatients , loadPtients} from '../../services'
+import {getPatients , loadPatients} from '../../services/api'
 function PatientList(){
     const [ patients , setPatients] = useState([])
     const loadPatients = ()=> {
