@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getDoctors } from "../../services/api";
+import { getDoctors } from "../services/api";
 import { useNavigate } from "react-router-dom";
 
 function DoctorList() {

@@ -18,14 +18,25 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework_simplejwt.views import TokenObtainPairView,TokenRefreshView
 from accounts.views import profile
+from django.contrib import admin
+from django.urls import path, include
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+from accounts.views import profile
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('clinic.urls') ),
+
+    # API routes
+    path('api/clinic/', include('clinic.urls')),
+    path('api/auth/', include('accounts.urls')),
+
+    # JWT
+    path('api/token/', TokenObtainPairView.as_view()),
+    path('api/token/refresh/', TokenRefreshView.as_view()),
+
+    # profile (optional, can also move to accounts app)
+    path('profile/', profile),
+
+    # frontend (ONLY if needed, keep at last)
     path('', include('frontend.urls')),
-    path('api/', include('accounts.urls')),
-    path('profile/',profile),
-    #tokenization
-   path('api/token/', TokenObtainPairView.as_view()),
-   path('api/token/refresh/', TokenRefreshView.as_view()),
 ]

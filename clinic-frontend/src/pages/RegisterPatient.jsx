@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { registerPatient } from "../../services/api";
+import { registerPatient } from "../services/api";
 import { useNavigate } from 'react-router-dom';
 
 

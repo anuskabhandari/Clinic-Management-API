@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import API from "../services/api";
 
 function RegisterDoctor() {
   const [username, setUserName] = useState("");
@@ -8,31 +8,31 @@ function RegisterDoctor() {
   const [specialization, setSpecialization] = useState("");
   const [experience, setExperience] = useState("");
 
-  const navigate = useNavigate(); //  IMPORTANT
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      //  1. REGISTER DOCTOR
-      await axios.post("/api/register/", {
+      // 1. REGISTER DOCTOR
+      await API.post("auth/register/", {
         username,
         password,
         role: "doctor",
         specialization,
-        experience: Number(experience), //  ensure number
+        experience: Number(experience),
       });
 
-      //  2. AUTO LOGIN
-      const res = await axios.post("/api/token/", {
+      // 2. AUTO LOGIN
+      const res = await API.post("token/", {
         username,
         password,
       });
 
-      //  3. SAVE TOKEN
+      // 3. SAVE TOKEN
       localStorage.setItem("token", res.data.access);
 
-      //  4. REDIRECT
+      // 4. REDIRECT
       navigate("/doctor-list");
 
     } catch (err) {

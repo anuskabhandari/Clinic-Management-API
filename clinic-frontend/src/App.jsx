@@ -1,10 +1,16 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import Login from "./assets/pages/Login.jsx";
-import PatientList from "./assets/pages/PatientList";
-import DoctorList from "./assets/pages/DoctorList";
-import RegisterPatient from "./assets/pages/RegisterPatient";
-import RegisterDoctor from "./assets/pages/RegisterDoctor";
-import HomePage from "./assets/pages/HomePage";
+import Login from "./pages/Login";
+import PatientList from "./pages/PatientList";
+import HomePage from "./pages/HomePage";
+import RegisterPatient from "./pages/RegisterPatient";
+
+import RegisterDoctor from "./pages/RegisterDoctor";
+import DoctorList from "./pages/DoctorList";
+import AdminDashboard from "./pages/AdminDashboard";
+import DoctorDashboard from "./pages/DoctorDashboard";
+import PatientDashboard from "./pages/PatientDashboard";
+
+import Profile from "./pages/Profile";
 
 function App() {
   const isAuthenticated = localStorage.getItem("token");
@@ -20,6 +26,15 @@ function App() {
           <Route path="/register" element={<RegisterPatient />} />
           <Route path="/register_doctor" element={<RegisterDoctor />} />
           <Route path="/home-page" element={<HomePage />} />
+
+          <Route path="/register_doctor" element={<RegisterDoctor />} />
+          <Route path="/doctor-list" element={<DoctorList />} />
+
+          <Route path="/admin-dashboard" element={<AdminDashboard />} />
+          <Route path="/doctor-dashboard" element={<DoctorDashboard />} />
+          <Route path="/patient-dashboard" element={<PatientDashboard />} />
+          <Route path="/profile" element={<Profile />} />
+
 
           {/* Protected Routes */}
           <Route

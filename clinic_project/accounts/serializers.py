@@ -19,3 +19,4 @@ class RegistrationSerializer(serializers.ModelSerializer):
             role=validated_data.get('role', 'patient')
         )
         return user
+    #TODO: serialization validation

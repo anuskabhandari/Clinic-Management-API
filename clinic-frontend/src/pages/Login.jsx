@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "axios";
+import API from "../services/api";
 import { useNavigate } from "react-router-dom";
 
 function Login() {
@@ -11,22 +11,21 @@ function Login() {
   e.preventDefault();
 
   try {
-    const res = await axios.post("/api/token/", {
+    const res = await API.post("token/", {
       username,
       password,
     });
 
-    // store token
+    console.log("LOGIN RESPONSE:", res.data);
+
     localStorage.setItem("token", res.data.access);
 
-    const role = res.data.role; //  define role
+    console.log("TOKEN SAVED:", localStorage.getItem("token"));
 
-    if (role === "doctor") {
-      navigate("/doctor-list");
-    } else {
-      navigate("/patient-list");
-    }
+    // TEMP FIX (no role from backend)
+    navigate("/patient-list");
   } catch (err) {
+    console.log("LOGIN ERROR:", err);
     alert("Invalid credentials");
   }
 };
