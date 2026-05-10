@@ -11,6 +11,7 @@ import DoctorDashboard from "./pages/DoctorDashboard";
 import PatientDashboard from "./pages/PatientDashboard";
 
 import Profile from "./pages/Profile";
+import BookAppointment from "./pages/appointment/BookAppointment";
 
 function App() {
   const isAuthenticated = localStorage.getItem("token");
